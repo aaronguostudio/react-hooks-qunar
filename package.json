@@ -14,6 +14,7 @@
     "babel-preset-react-app": "^9.0.1",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "classnames": "^2.2.6",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -64,7 +65,7 @@
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "4.3.1"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
