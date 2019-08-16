@@ -1,4 +1,6 @@
-import React, { useState, useMemo, useEffect, memo } from 'react'
+import React, {
+  useState, useMemo, useEffect, memo, useCallback
+} from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
@@ -34,7 +36,7 @@ const CitySection = memo(function  (props) {
 
   return (
     <ul className="city-ul">
-      <li className="city-li" key="title">
+      <li className="city-li" key="title" data-cate={title}>
         {title}
       </li>
       {
@@ -56,10 +58,34 @@ CitySection.propTypes = {
   onSelect: PropTypes.func.isRequired
 }
 
+const AlphaIndex = memo(function (props) {
+  const {
+    alpha,
+    onClick
+  } = props
+
+  return (
+    <i
+      className="city-index-item"
+      onClick={ () => onClick(alpha) }
+    >{ alpha }</i>
+  )
+})
+
+AlphaIndex.propTypes = {
+  alpha: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+}
+
+const aplhabet = Array.from(new Array(26), (ele, index) => {
+  return String.fromCharCode(65 + index)
+})
+
 const CityList = memo(function  (props) {
   const {
     sections,
-    onSelect
+    onSelect,
+    toAlpha
   } = props
 
   return (
@@ -76,13 +102,21 @@ const CityList = memo(function  (props) {
           })
         }
       </div>
+      <div className="city-index">
+        {
+          aplhabet.map(alpha => {
+            return <AlphaIndex onClick={toAlpha} key={alpha} alpha={alpha} />
+          })
+        }
+      </div>
     </div>
   )
 })
 
 CityList.propTypes = {
   sections: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  toAlpha: PropTypes.func.isRequired
 }
 
 const CitySelector =  memo(function (props) {
@@ -108,6 +142,10 @@ const CitySelector =  memo(function (props) {
     fetchCityData()
   }, [show, cityData, isLoading, fetchCityData])
 
+  const toAlpha = useCallback(alpha => {
+    document.querySelector(`[data-cate='${alpha}']`).scrollIntoView()
+  }, [])
+
   const outputCitySections = () => {
     if (isLoading) {
       return <div>Loading</div>
@@ -117,6 +155,7 @@ const CitySelector =  memo(function (props) {
       return <CityList
               sections={cityData.cityList}
               onSelect={onSelect}
+              toAlpha={toAlpha}
             />
     }
 
