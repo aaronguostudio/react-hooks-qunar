@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import URI from 'urijs'
 import useNav from '../common/useNav'
@@ -22,14 +23,18 @@ import {
   setDepartStations,
   setArriveStations,
   prevDate,
-  nextDate
+  nextDate,
+  toggleOrderType,
+  toggleHighSpeed,
+  toggleOnlyTickets,
+  toggleIsFiltersVisible
 } from './store/actions'
 
 import dayjs from 'dayjs'
 
 function App (props) {
-
   const {
+    trainList,
     from,
     to,
     highSpeed,
@@ -45,7 +50,8 @@ function App (props) {
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
-    arriveTimeEnd
+    arriveTimeEnd,
+    isFiltersVisible
   } = props
 
   // 解析字符串，这个副作用仅仅运行一次就可以
@@ -132,6 +138,15 @@ function App (props) {
     next
   } = useNav(departDate, dispatch, prevDate, nextDate)
 
+  const bottomCbs = useMemo(() => {
+    return bindActionCreators({
+      toggleOrderType,
+      toggleHighSpeed,
+      toggleOnlyTickets,
+      toggleIsFiltersVisible
+    }, dispatch)
+  }, [dispatch])
+
   // 如果请求返回错误，就返回 null，这里省略了处理错误请求的细节
   if (!searchParsed) {
     return null
@@ -149,8 +164,14 @@ function App (props) {
         prev={prev}
         next={next}
       />
-      <List />
-      <Bottom />
+      <List list={trainList} />
+      <Bottom
+        {...bottomCbs}
+        highSpeed={highSpeed}
+        orderType={orderType}
+        onlyTickets={onlyTickets}
+        isFiltersVisible={isFiltersVisible}
+      />
     </div>
   )
 }
