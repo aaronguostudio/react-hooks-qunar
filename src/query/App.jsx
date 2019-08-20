@@ -27,7 +27,15 @@ import {
   toggleOrderType,
   toggleHighSpeed,
   toggleOnlyTickets,
-  toggleIsFiltersVisible
+  toggleIsFiltersVisible,
+  setCheckedTicketTypes,
+  setCheckedTrainTypes,
+  setCheckedArriveStations,
+  setCheckedDepartStations,
+  setDepartTimeStart,
+  setDepartTimeEnd,
+  setArriveTimeStart,
+  setArriveTimeEnd
 } from './store/actions'
 
 import dayjs from 'dayjs'
@@ -51,7 +59,11 @@ function App (props) {
     departTimeEnd,
     arriveTimeStart,
     arriveTimeEnd,
-    isFiltersVisible
+    isFiltersVisible,
+    ticketTypes,
+    trainTypes,
+    departStations,
+    arriveStations
   } = props
 
   // 解析字符串，这个副作用仅仅运行一次就可以
@@ -124,7 +136,7 @@ function App (props) {
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
-    arriveTimeEnd
+    arriveTimeEnd,
   ])
 
   const onBack = useCallback(() => {
@@ -143,7 +155,15 @@ function App (props) {
       toggleOrderType,
       toggleHighSpeed,
       toggleOnlyTickets,
-      toggleIsFiltersVisible
+      toggleIsFiltersVisible,
+      setCheckedTicketTypes,
+      setCheckedTrainTypes,
+      setCheckedArriveStations,
+      setCheckedDepartStations,
+      setDepartTimeStart,
+      setDepartTimeEnd,
+      setArriveTimeStart,
+      setArriveTimeEnd
     }, dispatch)
   }, [dispatch])
 
@@ -171,6 +191,18 @@ function App (props) {
         orderType={orderType}
         onlyTickets={onlyTickets}
         isFiltersVisible={isFiltersVisible}
+        checkedTicketTypes={checkedTicketTypes}
+        checkedTrainTypes={checkedTrainTypes}
+        checkedDepartStations={checkedDepartStations}
+        checkedArriveStatuons={checkedArriveStatuons}
+        departTimeStart={departTimeStart}
+        departTimeEnd={departTimeEnd}
+        arriveTimeStart={arriveTimeStart}
+        arriveTimeEnd={arriveTimeEnd}
+        ticketTypes={ticketTypes}
+        trainTypes={trainTypes}
+        departStations={departStations}
+        arriveStations={arriveStations}
       />
     </div>
   )

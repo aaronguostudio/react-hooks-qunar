@@ -141,7 +141,7 @@ export function setArriveStations (arriveStations) {
   }
 }
 
-export function setCheckedArriveStatuons (checkedArriveStatuons) {
+export function setCheckedArriveStations (checkedArriveStatuons) {
   return {
     type: ACTION_SET_CHECKED_ARRIVE_STATUONS,
     payload: checkedArriveStatuons
