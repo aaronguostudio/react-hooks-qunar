@@ -91,7 +91,7 @@ const BottomModal = memo(function BottomModal (props) {
   } = props
 
   // 缓存层, 用过 callback 可以使 state 只在初始化的时候渲染
-  // 因为这些数据基本上只加载一次即可
+  // 因为这些数据基本上只加载一次即可，缓存层最终一并把数据提交
   const [localCheckedTicketTypes, setLocalCheckedTicketTypes] = useState(() => {
     return {...checkedTicketTypes}
   })
