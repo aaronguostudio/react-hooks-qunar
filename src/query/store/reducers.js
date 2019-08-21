@@ -56,6 +56,9 @@ export default {
     switch (type) {
       case ACTION_SET_HIGH_SPEED:
         return payload
+      case ACTION_SET_CHECKED_TRAIN_TYPES:
+        const checkedTrainTypes = payload
+        return Boolean(checkedTrainTypes[1] && checkedTrainTypes[5])
       default:
     }
     return state
@@ -119,6 +122,21 @@ export default {
     switch (type) {
       case ACTION_SET_CHECKED_TRAIN_TYPES:
         return payload
+      case ACTION_SET_HIGH_SPEED:
+        // 数据联动，这里面可以探测到其他类型的动作
+        // 这个 action type 是对整个 reducers 都有效的
+        const highSpeed = payload
+        const newCheckedTrainTypes = { ...state }
+
+        if (highSpeed) {
+          newCheckedTrainTypes[1] = true
+          newCheckedTrainTypes[5] = true
+        } else {
+          delete newCheckedTrainTypes[1]
+          delete newCheckedTrainTypes[5]
+        }
+
+        return newCheckedTrainTypes
       default:
     }
     return state
@@ -150,7 +168,7 @@ export default {
     }
     return state
   },
-  checkedArriveStatuons (state = {}, action) {
+  checkedArriveStations (state = {}, action) {
     const { type, payload } = action
     switch (type) {
       case ACTION_SET_CHECKED_ARRIVE_STATUONS:

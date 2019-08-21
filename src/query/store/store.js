@@ -26,7 +26,7 @@ export default createStore(
     departStations: [],
     checkedDepartStations: {},
     arriveStations: [],
-    checkedArriveStatuons: {},
+    checkedArriveStations: {},
     departTimeStart: 0,
     departTimeEnd: 24,
     arriveTimeStart: 0,

@@ -141,10 +141,10 @@ export function setArriveStations (arriveStations) {
   }
 }
 
-export function setCheckedArriveStations (checkedArriveStatuons) {
+export function setCheckedArriveStations (checkedArriveStations) {
   return {
     type: ACTION_SET_CHECKED_ARRIVE_STATUONS,
-    payload: checkedArriveStatuons
+    payload: checkedArriveStations
   }
 }
 
@@ -178,7 +178,7 @@ export function setArriveTimeEnd (arriveTimeEnd) {
 
 export function toggleIsFiltersVisible () {
   return (dispatch, getState) => {
-    const { isFiltersVisible } = getState
+    const { isFiltersVisible } = getState()
     dispatch({
       type: ACTION_SET_IS_FILTERS_VISIBLE,
       payload: !isFiltersVisible

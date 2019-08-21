@@ -54,7 +54,7 @@ function App (props) {
     checkedTicketTypes,
     checkedTrainTypes,
     checkedDepartStations,
-    checkedArriveStatuons,
+    checkedArriveStations,
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
@@ -90,7 +90,7 @@ function App (props) {
           .setSearch('checkedTicketTypes', Object.keys(checkedTicketTypes).join())
           .setSearch('checkedTrainTypes', Object.keys(checkedTrainTypes).join())
           .setSearch('checkedDepartStations', Object.keys(checkedDepartStations).join())
-          .setSearch('checkedArriveStatuons', Object.keys(checkedArriveStatuons).join())
+          .setSearch('checkedArriveStations', Object.keys(checkedArriveStations).join())
           .setSearch('departTimeStart', departTimeStart)
           .setSearch('departTimeEnd', departTimeEnd)
           .setSearch('arriveTimeStart', arriveTimeStart)
@@ -132,7 +132,7 @@ function App (props) {
     checkedTicketTypes,
     checkedTrainTypes,
     checkedDepartStations,
-    checkedArriveStatuons,
+    checkedArriveStations,
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
@@ -194,7 +194,7 @@ function App (props) {
         checkedTicketTypes={checkedTicketTypes}
         checkedTrainTypes={checkedTrainTypes}
         checkedDepartStations={checkedDepartStations}
-        checkedArriveStatuons={checkedArriveStatuons}
+        checkedArriveStations={checkedArriveStations}
         departTimeStart={departTimeStart}
         departTimeEnd={departTimeEnd}
         arriveTimeStart={arriveTimeStart}
